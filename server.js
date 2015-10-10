@@ -7,6 +7,7 @@ var port = process.env.PORT || 3000;
 var Adjective = require('./lib/adjective.js');
 var Verb = require('./lib/verb.js');
 var Noun = require('./lib/noun.js');
+var BandName = require('./lib/bandName.js');
 
 var getRandomWord = require('./lib/getRandomWord.js');
 var postWord = require('./lib/postWord.js');
@@ -14,6 +15,7 @@ var postWord = require('./lib/postWord.js');
 var adjective = new Adjective();
 var verb = new Verb();
 var noun = new Noun();
+var bandName = new BandName();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
@@ -34,6 +36,10 @@ app.get('/noun', function(req, res) {
   res.json(getRandomWord(noun));
 });
 
+app.get('/bandName', function(req, res) {
+  res.json(getRandomWord(bandName));
+});
+
 app.post('/adjective', function(req, res) {
   var word = postWord(req.body.word, adjective);
   res.json(word);
@@ -46,6 +52,11 @@ app.post('/verb', function(req, res) {
 
 app.post('/noun', function(req, res) {
   var word = postWord(req.body.word, noun);
+  res.json(word);
+});
+
+app.post('/bandName', function(req, res) {
+  var word = postWord(req.body.word, bandName);
   res.json(word);
 });
 
