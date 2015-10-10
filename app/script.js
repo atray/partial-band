@@ -29,6 +29,8 @@ $(function() {
     var verbPost;
     var noun = $("input[name=noun]").val();
     var nounPost;
+    var bandName = $("input[name=bandName]").val();
+    var bandPost;
 
     if (adjective) {
       adjPost = {word: adjective};
@@ -54,6 +56,13 @@ $(function() {
       });
     }
 
+    if (bandName) {
+      bandPost = {word: bandName};
+      $.post("bandName", bandPost, function(response) {
+        var bandRes = response.msg;
+        $("#bandRes").text(bandRes);
+      });
+    }
 
   });
 
